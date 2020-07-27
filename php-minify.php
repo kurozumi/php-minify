@@ -38,4 +38,5 @@ foreach ($tokens as $token) {
         }
     }
 }
-file_put_contents($argv[1], $code);
+$stdout = fopen('php://stdout', 'w');
+fwrite($stdout, $code);
