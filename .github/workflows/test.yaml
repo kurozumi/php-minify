@@ -1,0 +1,17 @@
+name: Test
+on: push
+jobs:
+  push:
+    name: Test
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test
+        run: |
+          php php-minify.php php-minify.php > stdout.php
+          size=`wc -c < stdout.php`
+          if [ $size = 0 ]; then
+            echo "ファイルが空です。"
+            exit 1
+          fi
